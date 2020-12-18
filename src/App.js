@@ -15,15 +15,16 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Farming from './components/Farming';
 import ProcessingExport from './components/ProcessingExport';
+import Journey from './components/Journey';
 
 function App() {
   return (
     <>
-    
+
       <Navigation />
       <Hero />
       <Farming />
-      <ProcessingExport />
+      <Journey />
      
     </>
   );

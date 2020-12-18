@@ -1,30 +1,35 @@
 import React from 'react';
 
 // Bootstrap components
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
 
 export default function Navigation() {
     return(
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
-                <Navbar.Brand href="#hero">BCB</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Container>
+                    
+                    <Navbar.Brand href="#hero">BCB</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Navbar.Collapse id="responsive-navbar-nav">
 
-                    <Nav className="ml-auto">
-                        <Nav.Link href="#hero">HOME</Nav.Link>
-                        <Nav.Link href="#farming">FARMING</Nav.Link>
-                        <Nav.Link href="#processing-export">PROCESSING & EXPORT</Nav.Link>
-                        <Nav.Link>JOURNEY</Nav.Link>
-                        <Nav.Link>ROASTING</Nav.Link>
-                        <Nav.Link>SPONSORS</Nav.Link>
-                        <Nav.Link>ABOUT</Nav.Link>
-                        <Nav.Link>FEEDBACK</Nav.Link>
-                    </Nav>
+                        <Nav className="ml-auto">
+                            <Nav.Link href="#hero">HOME</Nav.Link>
+                            <Nav.Link href="#farming">FARMING</Nav.Link>
+                            <Nav.Link href="#processing-export">PROCESSING & EXPORT</Nav.Link>
+                            <Nav.Link href="#journey">JOURNEY</Nav.Link>
+                            <Nav.Link>ROASTING</Nav.Link>
+                            <Nav.Link>SPONSORS</Nav.Link>
+                            <Nav.Link>ABOUT</Nav.Link>
+                            <Nav.Link>FEEDBACK</Nav.Link>
+                        </Nav>
 
-                </Navbar.Collapse>
+                    </Navbar.Collapse>
+
+                </Container>
             </Navbar>
         </>
     );

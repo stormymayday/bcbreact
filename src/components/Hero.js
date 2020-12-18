@@ -7,13 +7,10 @@ import Slider from './Slider';
 
 export const Hero = () => {
     return (
-        <div style={{}} id='hero'>
-            <Container fluid>
+        <div id='hero'>
 
-                {/* <h2 style={{color: 'white'}}>Hero</h2> */}
-                <Slider />
+                <Slider id='hero' />
 
-            </Container>
         </div>
     );
 }
