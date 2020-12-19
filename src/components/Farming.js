@@ -11,10 +11,10 @@ import slideTwo from '../images/slideTwo.jpg';
 
 export const Farming = () => {
     return (
-        <div style={{background: 'white', 'padding-top': '4em', 'padding-bottom': '4em'}} id='farming'>
+        <div style={{'padding-top': '4em', 'padding-bottom': '4em'}} id='farming'>
             <Container>
 
-                <h2 style={{'color': 'black', 'margin-bottom': '3rem'}}>Grown, Picked, and Processed by Claudia & Juan</h2>
+                <h2 style={{'margin-bottom': '3rem'}}>Grown, Picked, and Processed by Claudia & Juan</h2>
 
                 <Row>
 
