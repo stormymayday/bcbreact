@@ -10,33 +10,27 @@ import Button from 'react-bootstrap/Button';
 import slideOne from '../images/slideOne.jpg';
 import slideTwo from '../images/slideTwo.jpg';
 
+import './ProcessingExport.css';
+
 
 export const ProcessingExport = () => {
     return (
-        <div style={{'padding-top': '4em', 'padding-bottom': '4em'}} id='processing-export'>
+        <div className="processing-section-bg" style={{'padding-top': '4em', 'padding-bottom': '4em'}} id='processing-export'>
             <Container>
 
-                <h2 style={{'margin-bottom': '3rem'}}>Processed and Exported by Catracha Coffee</h2>
+                <h2 style={{color: 'white'}}>Processed and Exported by Catracha Coffee</h2>
+                <p style={{color: 'white'}}>A social enterprise dedicated to accessing the specialty coffee market for coffee farmers in Santa Elena, La Paz, Honduras.</p>
+                <Row>
+                    <Col lg={3} md={6} sm={12}>
+                        <Button variant="outline-light" size="lg" block style={{'margin-bottom': '2rem'}}>LEARN MORE</Button>
+                    </Col>
+                </Row>
 
                 <Row>
 
                         <Col lg>
 
-                            <Card border="light">
-                                <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
-                                <Card.Body>
-                                <Card.Title>Catracha Coffee</Card.Title>
-                            <Card.Text>
-                                A social enterprise dedicated to accessing the specialty coffee market for coffee farmers in Santa Elena, La Paz, Honduras.
-                            </Card.Text>
-                            </Card.Body>
-                            </Card>
-
-                        </Col>
-
-                        <Col lg>
-
-                            <Card border="light">
+                            <Card border="light" text='light' border='light' style={{'background-color': 'transparent'}}>
                                 <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
                                 <Card.Body>
                                 <Card.Title>Catracha Intake Parchment</Card.Title>
@@ -53,7 +47,7 @@ export const ProcessingExport = () => {
 
                         <Col lg>
 
-                            <Card border="light">
+                            <Card border="light" text='light' border='light' style={{'background-color': 'transparent'}}>
                                 <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
                                 <Card.Body>
                                 <Card.Title>Milling</Card.Title>

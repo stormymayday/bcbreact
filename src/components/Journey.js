@@ -11,15 +11,15 @@ import slideTwo from '../images/slideTwo.jpg';
 
 export const Journey = () => {
     return (
-        <div style={{background: '#343B3F', 'padding-top': '4em', 'padding-bottom': '4em'}} id='journey'>
+        <div style={{'padding-top': '4em', 'padding-bottom': '4em'}} id='journey'>
             <Container>
 
-                <h2 style={{color: 'white', 'margin-bottom': '3rem'}}>Journey Highlights</h2>
+                <h2 style={{'margin-bottom': '3rem'}}>Journey Highlights</h2>
 
                 <Row>
 
                         <Col lg>
-                            <Card bg='dark' text='light' border='dark'>
+                            <Card border="light">
                                 <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
                                 <Card.Body>
                                 <Card.Title>Puerto Cortés Green Export</Card.Title>
@@ -33,7 +33,7 @@ export const Journey = () => {
                         </Col>
 
                         <Col lg>
-                            <Card bg='dark' text='light' border='dark'>
+                            <Card border="light">
                                 <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
                                 <Card.Body>
                                 <Card.Title>Port of Oakland Green Import</Card.Title>
@@ -46,7 +46,7 @@ export const Journey = () => {
                         </Col>
 
                         <Col lg>
-                            <Card bg='dark' text='light' border='dark'>
+                            <Card border="light">
                                 <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
                                 <Card.Body>
                                 <Card.Title>QC Intake Green</Card.Title>

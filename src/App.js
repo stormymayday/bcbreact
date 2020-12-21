@@ -16,6 +16,8 @@ import Hero from './components/Hero';
 import Farming from './components/Farming';
 import ProcessingExport from './components/ProcessingExport';
 import Journey from './components/Journey';
+import Roasting from './components/Roasting';
+import EconomicsAndTransparency from './components/EconomicsAndTransparency';
 
 function App() {
   return (
@@ -26,7 +28,9 @@ function App() {
       <Farming />
       <ProcessingExport />
       <Journey />
-     
+      <Roasting />
+      <EconomicsAndTransparency />
+
     </>
   );
 }
