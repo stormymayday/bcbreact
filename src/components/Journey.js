@@ -5,60 +5,66 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
-import slideOne from '../images/slideOne.jpg';
-import slideTwo from '../images/slideTwo.jpg';
+export const Journey = (props) => {
 
+    // Converting Green Export Video
+    const greenExportVideo = 'data:video/mp4;base64,' + props.greenExportVideo;
 
-export const Journey = () => {
+    // Converting Intake Image
+    const greenImportImage = 'data:image/jpg;base64,' + props.greenImportImage;
+
+    // Converting Green Export Video
+    const intakeGreenVideo = 'data:video/mp4;base64,' + props.intakeGreenVideo;
+
     return (
-        <div style={{'padding-top': '4em', 'padding-bottom': '4em'}} id='journey'>
+        <div style={{ 'padding-top': '4em', 'padding-bottom': '4em' }} id='journey'>
             <Container>
 
-                <h2 style={{'margin-bottom': '3rem'}}>Journey Highlights</h2>
+                <h2 style={{ 'margin-bottom': '3rem' }}>Journey Highlights</h2>
 
                 <Row>
 
-                        <Col lg>
-                            <Card border="light">
-                                <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
-                                <Card.Body>
-                                <Card.Title>Puerto Cortés Green Export</Card.Title>
+                    <Col lg>
+                        <Card border="light" style={{ 'margin-bottom': '2rem' }}>
+                            <Card.Body>
+                                <Card.Title>Green Export</Card.Title>
                                 <Card.Text>
-                                    Exported From: Puerto Cortes, Cortes, Honduras<br />
-                                    Date: 2020-07-10T14:02<br />
-                                    Weight: 760 Lbs
+                                    Exported From: {props.exportedFrom}<br />
+                                    Date: {props.greenExportDate}<br />
+                                    Weight: {props.greenExportWeight}
                                 </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                            </Card.Body>
+                            <video style={{ 'max-height': '40rem' }} src={greenExportVideo} controls></video>
+                        </Card>
+                    </Col>
 
-                        <Col lg>
-                            <Card border="light">
-                                <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
-                                <Card.Body>
-                                <Card.Title>Port of Oakland Green Import</Card.Title>
+                    <Col lg>
+                        <Card border="light" style={{ 'margin-bottom': '2rem' }}>
+                            <Card.Body>
+                                <Card.Title>Green Import</Card.Title>
                                 <Card.Text>
-                                    Imported At: Oakland, California, United States<br />
-                                    Date: 2020-08-20T15:24
+                                    Imported At: {props.greenImportLocation}<br />
+                                    Date: {props.greenImportDate}
                                 </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                            </Card.Body>
+                            <Card.Img variant="top" src={greenImportImage} style={{ 'max-height': '40rem' }} />
+                        </Card>
+                    </Col>
 
-                        <Col lg>
-                            <Card border="light">
-                                <Card.Img variant="top" src={slideOne} style={{'height': '20rem'}} />
-                                <Card.Body>
-                                <Card.Title>QC Intake Green</Card.Title>
+                    <Col lg>
+                        <Card border="light">
+                            <Card.Body>
+                                <Card.Title>Green Intake</Card.Title>
                                 <Card.Text>
-                                    Roaster Received in: Denver, Colorado, United States<br />
-                                    Date: 2020-10-02T00:36<br />
-                                    Current Weight Remaining: 225 Lbs<br />
-                                    Received by: Maxwell
+                                    Roaster Received in: {props.intakeGreenLocation}<br />
+                                    Date: {props.intakeGreenDate}<br />
+                                    Current Weight Remaining: {props.intakeGreenWeight}<br />
+                                    Received by: {props.intakeGreenCollector}
                                 </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                            </Card.Body>
+                            <video style={{ 'max-height': '40rem' }} src={intakeGreenVideo} controls></video>
+                        </Card>
+                    </Col>
 
                 </Row>
 

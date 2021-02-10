@@ -21,7 +21,7 @@ export default function Navigation() {
                             <Nav.Link href="#farming">FARMING</Nav.Link>
                             <Nav.Link href="#processing-export">PROCESSING & EXPORT</Nav.Link>
                             <Nav.Link href="#journey">JOURNEY</Nav.Link>
-                            <Nav.Link>ROASTING</Nav.Link>
+                            <Nav.Link href="#roasting">ROASTING</Nav.Link>
                             <Nav.Link>SPONSORS</Nav.Link>
                             <Nav.Link>ABOUT</Nav.Link>
                             <Nav.Link>FEEDBACK</Nav.Link>
