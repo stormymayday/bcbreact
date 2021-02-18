@@ -6,11 +6,11 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
 export default function Navigation() {
-    return(
+    return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
                 <Container>
-                    
+
                     <Navbar.Brand href="#hero">BCB</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
@@ -22,9 +22,7 @@ export default function Navigation() {
                             <Nav.Link href="#processing-export">PROCESSING & EXPORT</Nav.Link>
                             <Nav.Link href="#journey">JOURNEY</Nav.Link>
                             <Nav.Link href="#roasting">ROASTING</Nav.Link>
-                            <Nav.Link>SPONSORS</Nav.Link>
-                            <Nav.Link>ABOUT</Nav.Link>
-                            <Nav.Link>FEEDBACK</Nav.Link>
+                            <Nav.Link href="#economics">ECONOMICS</Nav.Link>
                         </Nav>
 
                     </Navbar.Collapse>

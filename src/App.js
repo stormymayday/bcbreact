@@ -1,5 +1,8 @@
 // React
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+
+// Google Analytics
+import ReactGA from 'react-ga';
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,16 +25,379 @@ import Journey from './components/Journey';
 import Roasting from './components/Roasting';
 import EconomicsAndTransparency from './components/EconomicsAndTransparency';
 
+const App = () => {
+
+
+  // Lot History State (for Farming & Processing Sections)
+  const [lotHistory, setLotHistory] = useState('fetching data from BEXT');
+
+  // Farming Section State
+  const [pickedBy, setPickedBy] = useState('fetching data from BEXT');
+  const [pickedCherriesWeight, setPickedCherriesWeight] = useState('fetching data from BEXT');
+  const [datePicked, setDatePicked] = useState('fetching data from BEXT');
+  const [variety, setVariety] = useState('fetching data from BEXT');
+  const [pickerImage, setPickerImage] = useState('fetching data from BEXT');
+  const [dePulpingVideo, setDePulpingVideo] = useState('fetching data from BEXT');
+
+  // Processing & Export Section State
+  const [catrachaIntakeImage, setSatrachaIntakeImage] = useState('fetching data from BEXT');
+  const [milledOnDate, setMilledOnDate] = useState('fetching data from BEXT');
+  const [miller, setMiller] = useState('fetching data from BEXT');
+  const [lotCurrentWeight, setLotCurrentWeight] = useState('fetching data from BEXT');
+  const [millingLocation, setMillingLocation] = useState('fetching data from BEXT');
+  const [millingVideo, setMillingVideo] = useState('fetching data from BEXT');
+  const [millingImage, setMillingImage] = useState('fetching data from BEXT');
+
+  // Journey Highlights Section State
+  // Green Export
+  const [exportedFrom, setExportedFrom] = useState('fetching data from BEXT');
+  const [greenExportDate, setGreenExportDate] = useState('fetching data from BEXT');
+  const [greenExportWeight, setGreenExportWeight] = useState('fetching data from BEXT');
+  const [greenExportVideo, setGreenExportVideo] = useState('fetching data from BEXT');
+  // Green Import
+  const [greenImportLocation, setGreenImportLocation] = useState('fetching data from BEXT');
+  const [greenImportDate, setGreenImportDate] = useState('fetching data from BEXT');
+  const [greenImportImage, setGreenImportImage] = useState('fetching data from BEXT');
+  // Green Intake
+  const [intakeGreenLocation, setIntakeGreenLocation] = useState('fetching data from BEXT');
+  const [intakeGreenDate, setIntakeGreenDate] = useState('fetching data from BEXT');
+  const [intakeGreenWeight, setIntakeGreenWeight] = useState('fetching data from BEXT');
+  const [intakeGreenCollector, setIntakeGreenCollector] = useState('fetching data from BEXT');
+  const [intakeGreenVideo, setIntakeGreenVideo] = useState('fetching data from BEXT');
+
+  // Roasting State
+  const [roastingCounty, setRoastingCounty] = useState('fetching data from BEXT');
+  const [roastingState, setRoastingState] = useState('fetching data from BEXT');
+  const [roastingCity, setRoastingCity] = useState('fetching data from BEXT');
+  const [cuppersNotes, setCuppersNotes] = useState('fetching data from BEXT');
+  const [roastDate, setRoastDate] = useState('fetching data from BEXT');
+  const [roasterName, setRoasterName] = useState('fetching data from BEXT');
+  const [roastingImage, setRoastingImage] = useState('fetching data from BEXT');
+
+  useEffect(() => {
+
+    // Render test
+    console.log('Hello From App.js');
+
+    // Google Analytics initiazation
+    ReactGA.initialize(`${process.env.REACT_APP_GA_ID}`);
+
+    // Page View Report
+    ReactGA.pageview('/');
+
+    // Lot History Call
+    fetch(`${process.env.REACT_APP_GET_LOT_HISTORY}/a58fc3bf-94fd-4f0f-bd37-0947d8ba4146`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => {
+      return res.json();
+    })
+      .then(json => {
+        setLotHistory(json);
+      });
+
+    // Farming Section Call
+    fetch(`${process.env.REACT_APP_GET_LOT}/5c955a2e-90ef-6bf4-fa8a-1813ee5d4687`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+
+        setPickedBy(json.customData['FarmerName.Measure'].value);
+        setPickedCherriesWeight(json.customData['TotalValue.Measure'].value + ' lbs');
+        setDatePicked(json.customData['HarvestDate.MeasureTime'].dateTimeValue);
+        setVariety(json.customData['Varietal.Measure'].value);
+        setPickerImage(json.customData['LotFarmerProductImage.Measure'].value);
+
+      });
+    // Farming Section - Video Call
+    fetch(`${process.env.REACT_APP_GET_VIDEO}/df5e4e96-5133-4c85-ad5f-032d65182723`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+        setDePulpingVideo('data:video/mp4;base64,' + json);
+      });
+    // Farming Calls End
+
+    // Processing & Export Calls
+    // Catracha Intake Parchment - Image
+    fetch(`${process.env.REACT_APP_GET_IMAGE}/2d79f311-eb5f-4a4a-96b8-ec9adfca1617`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+        setSatrachaIntakeImage('data:image/jpg;base64,' + json);
+      });
+    // Milling Calls - date, miller, weight
+    fetch(`${process.env.REACT_APP_GET_LOT}/b0c1846f-8cef-410e-a2ec-f6d9f3843e9f`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+
+        setMilledOnDate(json.customData['MillingDate.MeasureTime'].dateTimeValue.split('T')[0]);
+        setMiller(json.customData['FarmerName.Measure'].value);
+        setLotCurrentWeight(json.currentWeight + ' lbs');
+
+      });
+    // Milling Location
+    fetch(`${process.env.REACT_APP_GET_NODE}/8a14226b-873b-4893-bedc-a9699dc28472`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json()).then(json => {
+
+      setMillingLocation(`${json.defaultLocation.city}, ${json.defaultLocation
+        .state}, ${json.defaultLocation.country}`);
+
+    });
+    // Milling Video
+    fetch(`${process.env.REACT_APP_GET_VIDEO}/5b80c8dc-1dac-4eaf-8674-75052d83d0c5`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+
+        setMillingVideo('data:video/mp4;base64,' + json);
+
+      });
+    // Milling Image
+    fetch(`${process.env.REACT_APP_GET_IMAGE}/14d5be6c-8f0e-48dd-88ca-46a1958a2fcf`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+
+        setMillingImage('data:image/jpg;base64,' + json);
+
+      });
+    // Processing & Export Calls End
+
+    // Journey Calls
+    // Green Export - Exported From
+    fetch(`${process.env.REACT_APP_GET_NODE}/c51f7616-5fb6-4416-be83-c98dc0d25df1`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json()).then(json => {
+
+      setExportedFrom(`${json.defaultLocation.city}, ${json.defaultLocation
+        .state}, ${json.defaultLocation.country}`);
+
+    });
+    // Green Export - Date & Weight
+    fetch(`${process.env.REACT_APP_GET_LOT}/f1222ba7-0c10-4abf-b49f-c197be1ec8e1`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+
+        setGreenExportDate(`${json.customData['ExportDate.MeasureTime'].dateTimeValue.split('T')[0]}`);
+        setGreenExportWeight(` ${json.absorbedWeight} Lbs`);
+
+      });
+    // Green Export - Video
+    fetch(`${process.env.REACT_APP_GET_VIDEO}/c8bf9e23-1ae9-4422-8e00-984566d5663a`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+        setGreenExportVideo('data:video/mp4;base64,' + json);
+      });
+    // Green Import - Imported At
+    fetch(`${process.env.REACT_APP_GET_NODE}/b2d1d8b3-498b-424e-87df-3050aa237115`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json()).then(json => {
+
+      setGreenImportLocation(`${json.defaultLocation.city}, ${json.defaultLocation
+        .state}, ${json.defaultLocation.country}`);
+
+    });
+    // Green Import - Date
+    fetch(`${process.env.REACT_APP_GET_LOT}/8f43a6a8-52aa-45d6-9bba-cbf8f823037d`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+        setGreenImportDate(`${json.customData['ImportDate.MeasureTime'].dateTimeValue.split('T')[0]}`);
+      });
+    // Green Import - Image
+    fetch(`${process.env.REACT_APP_GET_IMAGE}/4aa16929-f043-4520-809d-d1f62cfb106d`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+        setGreenImportImage('data:image/jpg;base64,' + json);
+      });
+    // CIntake Green - Roaster Received in
+    fetch(`${process.env.REACT_APP_GET_NODE}/1dc41db1-f7b5-45f1-8810-432e6be023cb`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json()).then(json => {
+      setIntakeGreenLocation(`${json.defaultLocation.city}, ${json.defaultLocation.state}, ${json.defaultLocation.country}`);
+    });
+    // Intake Green - Date, Weight, & Received by
+    fetch(`${process.env.REACT_APP_GET_LOT}/a58fc3bf-94fd-4f0f-bd37-0947d8ba4146`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+
+        setIntakeGreenDate(`${json.customData['TransportDate.MeasureTime'].dateTimeValue.split('T')[0]}`);
+        setIntakeGreenWeight(`${json.currentWeight} Lbs`);
+        setIntakeGreenCollector(`${json.customData['CollectorName.Measure'].value}`);
+
+      });
+    // Intake Green - Video
+    fetch(`${process.env.REACT_APP_GET_VIDEO}/6d48b0b4-25d3-469e-9d60-a657724ca296`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+        setIntakeGreenVideo('data:video/mp4;base64,' + json);
+      });
+    // Journey Calls End
+
+    // Roasting Calls
+    fetch(`${process.env.REACT_APP_GET_NODE}/73427e9e-e29d-4b33-9a27-95244bdb0370`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json()).then(json => {
+
+      setRoastingCounty(json.defaultLocation.country);
+      setRoastingState(json.defaultLocation.state);
+      setRoastingCity(json.defaultLocation.city);
+
+    });
+
+    fetch(`${process.env.REACT_APP_GET_LOT}/50933c21-a1b8-4774-b023-0b7ec19063f4`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+
+        setCuppersNotes(json.customData['CuppersNotes.Measure'].value);
+        setRoastDate(json.customData['RoastDate.MeasureTime'].dateTimeValue);
+        setRoasterName(json.customData['FarmerName.Measure'].value);
+
+      });
+
+    fetch(`${process.env.REACT_APP_GET_IMAGE}/3ba5c81b-076c-4db4-a235-67a6b8b8e90f`, {
+      method: 'GET',
+      headers: {
+        'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
+      }
+    }).then(res => res.json())
+      .then(json => {
+
+        setRoastingImage('data:image/jpg;base64,' + json);
+
+      });
+    // Roasting Calls End
+
+  }, [])
+
+  return (
+    <React.Fragment>
+      <Navigation />
+      <Hero />
+      <Farming
+        lotHistory={lotHistory}
+        pickedBy={pickedBy}
+        pickedCherriesWeight={pickedCherriesWeight}
+        datePicked={datePicked}
+        variety={variety}
+        pickerImage={pickerImage}
+        dePulpingVideo={dePulpingVideo}
+      />
+      <ProcessingExport
+        lotHistory={lotHistory}
+        catrachaIntakeImage={catrachaIntakeImage}
+        milledOnDate={milledOnDate}
+        miller={miller}
+        lotCurrentWeight={lotCurrentWeight}
+        millingLocation={millingLocation}
+        millingVideo={millingVideo}
+        millingImage={millingImage}
+      />
+      <Journey
+        // Green Export 
+        exportedFrom={exportedFrom}
+        greenExportDate={greenExportDate}
+        greenExportWeight={greenExportWeight}
+        greenExportVideo={greenExportVideo}
+        // Green Import
+        greenImportLocation={greenImportLocation}
+        greenImportDate={greenImportDate}
+        greenImportImage={greenImportImage}
+        // Green Intake
+        intakeGreenLocation={intakeGreenLocation}
+        intakeGreenDate={intakeGreenDate}
+        intakeGreenWeight={intakeGreenWeight}
+        intakeGreenCollector={intakeGreenCollector}
+        intakeGreenVideo={intakeGreenVideo}
+      />
+      <Roasting
+        roastingCounty={roastingCounty}
+        roastingState={roastingState}
+        roastingCity={roastingCity}
+        cuppersNotes={cuppersNotes}
+        roastDate={roastDate}
+        roasterName={roasterName}
+        roastingImage={roastingImage}
+      />
+      <EconomicsAndTransparency />
+    </React.Fragment>
+  );
+};
+
+/*
+
 class App extends Component {
 
-  // 1. Constructor function
   constructor(props) {
 
     super(props);
 
-    // 2. Defining the State
     this.state = {
-      items: [],
       isLoaded: false,
 
       lotHistory: {},
@@ -92,7 +458,6 @@ class App extends Component {
     }
   }
 
-  // 3. ComponentDidMount method
   componentDidMount() {
 
     // Get Lot History
@@ -147,7 +512,7 @@ class App extends Component {
         })
       });
 
-    // 4. API Call to Roasting Node
+    // Roasting Node
     fetch('https://bext360api.azure-api.net/retail/v1/getnode/73427e9e-e29d-4b33-9a27-95244bdb0370', {
       method: 'GET',
       headers: {
@@ -162,7 +527,7 @@ class App extends Component {
       })
     });
 
-    // 5. API Call to Roasting Lot
+    // Roasting Lot
     fetch('https://bext360api.azure-api.net/retail/v1/getlot/50933c21-a1b8-4774-b023-0b7ec19063f4', {
       method: 'GET',
       headers: {
@@ -177,7 +542,7 @@ class App extends Component {
         })
       });
 
-    // 5. API Call to Roasting Image
+    // Roasting Image
     fetch('https://bext360api.azure-api.net/retail/v1/getimage/3ba5c81b-076c-4db4-a235-67a6b8b8e90f', {
       method: 'GET',
       headers: {
@@ -369,6 +734,7 @@ class App extends Component {
       });
 
   }
+  // Component Did Mount
 
   render() {
 
@@ -433,7 +799,13 @@ class App extends Component {
         </>
       );
     }
+
+    // Render
   }
+
+  // App Component
 }
+
+*/
 
 export default App;

@@ -8,13 +8,13 @@ import Card from 'react-bootstrap/Card';
 export const Journey = (props) => {
 
     // Converting Green Export Video
-    const greenExportVideo = 'data:video/mp4;base64,' + props.greenExportVideo;
+    // const greenExportVideo = 'data:video/mp4;base64,' + props.greenExportVideo;
 
     // Converting Intake Image
-    const greenImportImage = 'data:image/jpg;base64,' + props.greenImportImage;
+    // const greenImportImage = 'data:image/jpg;base64,' + props.greenImportImage;
 
     // Converting Green Export Video
-    const intakeGreenVideo = 'data:video/mp4;base64,' + props.intakeGreenVideo;
+    // const intakeGreenVideo = 'data:video/mp4;base64,' + props.intakeGreenVideo;
 
     return (
         <div style={{ 'padding-top': '4em', 'padding-bottom': '4em' }} id='journey'>
@@ -34,7 +34,7 @@ export const Journey = (props) => {
                                     Weight: {props.greenExportWeight}
                                 </Card.Text>
                             </Card.Body>
-                            <video style={{ 'max-height': '40rem' }} src={greenExportVideo} controls></video>
+                            <video style={{ 'max-height': '40rem' }} src={props.greenExportVideo} controls></video>
                         </Card>
                     </Col>
 
@@ -47,7 +47,7 @@ export const Journey = (props) => {
                                     Date: {props.greenImportDate}
                                 </Card.Text>
                             </Card.Body>
-                            <Card.Img variant="top" src={greenImportImage} style={{ 'max-height': '40rem' }} />
+                            <Card.Img variant="top" src={props.greenImportImage} style={{ 'max-height': '40rem' }} />
                         </Card>
                     </Col>
 
@@ -62,7 +62,7 @@ export const Journey = (props) => {
                                     Received by: {props.intakeGreenCollector}
                                 </Card.Text>
                             </Card.Body>
-                            <video style={{ 'max-height': '40rem' }} src={intakeGreenVideo} controls></video>
+                            <video style={{ 'max-height': '40rem' }} src={props.intakeGreenVideo} controls></video>
                         </Card>
                     </Col>
 

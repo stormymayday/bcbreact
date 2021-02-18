@@ -13,13 +13,13 @@ import './ProcessingExport.css';
 export const ProcessingExport = (props) => {
 
     // Converting Intake Image
-    const catrachaIntakeImage = 'data:image/jpg;base64,' + props.catrachaIntakeImage;
+    // const catrachaIntakeImage = 'data:image/jpg;base64,' + props.catrachaIntakeImage;
 
     // Converting Milling Video
-    const millingVideo = 'data:video/mp4;base64,' + props.millingVideo;
+    // const millingVideo = 'data:video/mp4;base64,' + props.millingVideo;
 
     // Converting Milling Image
-    const millingImage = 'data:image/jpg;base64,' + props.millingImage;
+    // const millingImage = 'data:image/jpg;base64,' + props.millingImage;
 
     const [totalIntakeWeight, setTotalIntakeWeight] = useState('fetching data from BEXT');
 
@@ -51,7 +51,7 @@ export const ProcessingExport = (props) => {
             for (let i = 0; i < lotIDs.length; i++) {
                 // API call and object assignment
                 Object.assign(lotData,
-                    await fetch(`https://bext360api.azure-api.net/retail/v1/getlot/${lotIDs[i]}`, {
+                    await fetch(`${process.env.REACT_APP_GET_LOT}/${lotIDs[i]}`, {
                         method: 'GET',
                         headers: {
                             'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
@@ -127,7 +127,7 @@ export const ProcessingExport = (props) => {
                                     Payments total: {paymentsTotal}<br />
                                 </Card.Text>
                             </Card.Body>
-                            <Card.Img variant="top" src={catrachaIntakeImage} style={{ 'max-height': '40rem' }} />
+                            <Card.Img variant="top" src={props.catrachaIntakeImage} style={{ 'max-height': '40rem' }} />
                         </Card>
 
                     </Col>
@@ -138,14 +138,14 @@ export const ProcessingExport = (props) => {
                             <Card.Body>
                                 <Card.Title>Milling</Card.Title>
                                 <Card.Text>
-                                    Milled on: {props.milling.milledOnDate}<br />
-                                    Miller: {props.milling.miller}<br />
+                                    Milled on: {props.milledOnDate}<br />
+                                    Miller: {props.miller}<br />
                                     Location: {props.millingLocation}<br />
-                                    Lot Current Weight: {props.milling.lotCurrentWeight}
+                                    Lot Current Weight: {props.lotCurrentWeight}
                                 </Card.Text>
                             </Card.Body>
-                            <video style={{ 'max-height': '40rem' }} src={millingVideo} controls></video>
-                            <Card.Img variant="top" src={millingImage} style={{ 'max-height': '40rem' }} />
+                            <video style={{ 'max-height': '40rem' }} src={props.millingVideo} controls></video>
+                            <Card.Img variant="top" src={props.millingImage} style={{ 'max-height': '40rem' }} />
                         </Card>
 
                     </Col>

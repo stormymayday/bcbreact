@@ -16,7 +16,7 @@ import './EconomicsAndTransparency.css';
 
 export const EconomicsAndTransparency = () => {
     return (
-        <div className="economics-section-bg" style={{ 'padding-top': '4em', 'padding-bottom': '4em' }} id='processing-export'>
+        <div className="economics-section-bg" style={{ 'padding-top': '4em', 'padding-bottom': '4em' }} id='economics'>
             <Container>
 
                 <h2 style={{ color: 'white' }}>Economics & Transparency</h2>

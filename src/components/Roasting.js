@@ -16,7 +16,7 @@ import './Roasting.css';
 export const Roasting = (props) => {
 
     // Converting image
-    const source = 'data:image/jpeg;base64,' + props.roastingImage;
+    // const source = 'data:image/jpeg;base64,' + props.roastingImage;
 
     return (
         <div className="roasting-section-bg" style={{ 'padding-top': '4em', 'padding-bottom': '4em' }} id='roasting'>
@@ -28,7 +28,7 @@ export const Roasting = (props) => {
                         <Card border="light" text='light' border='light' style={{ 'background-color': 'transparent', 'margin-bottom': '2rem' }}>
                             <Card.Body>
                                 <Card.Text>
-                                    Roasted at: {props.city}, {props.state}, {props.country}<br />
+                                    Roasted at: {props.roastingCity}, {props.roastingState}, {props.roastingCounty}<br />
                                     Cuppers Notes: {props.cuppersNotes}<br />
                                     Roast Date: {props.roastDate}<br />
                                     Roaster: {props.roasterName}<br />
@@ -39,7 +39,7 @@ export const Roasting = (props) => {
                     </Col>
                     <Col lg={6} md={12}>
                         <Card border="light" text='light' border='light' style={{ 'background-color': 'transparent' }}>
-                            <Card.Img variant="top" src={source} style={{ 'max-height': '40rem' }} />
+                            <Card.Img variant="top" src={props.roastingImage} style={{ 'max-height': '40rem' }} />
                         </Card>
                     </Col>
                 </Row>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,8 +7,8 @@ import Card from 'react-bootstrap/Card';
 
 export const Farming = (props) => {
 
-    // Converting De-Pupling Video
-    const dePulpingVideo = 'data:video/mp4;base64,' + props.farmerDePulping;
+    // Render Test
+    // console.log('Hello from farming');
 
     const [totalAbsorbedWeight, setTotalAbsorbedWeight] = useState('fetching data from BEXT');
 
@@ -44,7 +44,7 @@ export const Farming = (props) => {
             for (let i = 0; i < lotIDs.length; i++) {
                 // API call and object assignment
                 Object.assign(lotData,
-                    await fetch(`https://bext360api.azure-api.net/retail/v1/getlot/${lotIDs[i]}`, {
+                    await fetch(`${process.env.REACT_APP_GET_LOT}/${lotIDs[i]}`, {
                         method: 'GET',
                         headers: {
                             'Ocp-Apim-Subscription-Key': `${process.env.REACT_APP_API_KEY}`
@@ -103,13 +103,13 @@ export const Farming = (props) => {
                             <Card.Body>
                                 <Card.Title>Farmer Harvest</Card.Title>
                                 <Card.Text>
-                                    Picked by: {props.farmerHarvest.pickedBy}<br />
-                                    Picked Cherries Weight: {props.farmerHarvest.pickedCherriesWeight}<br />
-                                    Date picked: {props.farmerHarvest.datePicked}<br />
-                                    Variety: {props.farmerHarvest.variety}
+                                    Picked by: {props.pickedBy}<br />
+                                    Picked Cherries Weight: {props.pickedCherriesWeight}<br />
+                                    Date picked: {props.datePicked}<br />
+                                    Variety: {props.variety}
                                 </Card.Text>
                             </Card.Body>
-                            <Card.Img variant="top" src={props.farmerHarvest.pickerImage} style={{ 'max-height': '40rem' }} />
+                            <Card.Img variant="top" src={props.pickerImage} style={{ 'max-height': '40rem' }} />
                         </Card>
 
                     </Col>
@@ -125,7 +125,7 @@ export const Farming = (props) => {
                                     De-pulped between: {dePulpedDates}
                                 </Card.Text>
                             </Card.Body>
-                            <video style={{ 'height': '20rem' }} src={dePulpingVideo} controls></video>
+                            <video style={{ 'height': '20rem' }} src={props.dePulpingVideo} controls></video>
                         </Card>
                     </Col>
 
